@@ -3,14 +3,23 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000718;
+  --foreground: #ededed;
+  --dark: #000718;
+  --theme: #07eea1;
+  --card-gradient: radial-gradient(
+    ellipse at 50% 85%,
+    transparent 10%,
+    rgba(0, 0, 0, 0.25) 40%,
+    rgba(18, 235, 198, 0.075)
+  );
+  --page-container-width: 90rem;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ededed;
+    --foreground: #000718;
   }
 }
 
@@ -18,4 +27,22 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer components {
+  .action-button {
+    @apply bg-theme text-background rounded-2xl px-4 py-1 transition-all outline outline-1 outline-theme -outline-offset-2 hover:bg-background hover:text-theme hover:outline-offset-0;
+  }
+
+  .input {
+    @apply bg-background text-foreground rounded-2xl px-4 py-1 max-w-[40ch] border-theme border-2;
+  }
+
+  .label {
+    @apply text-sm;
+  }
+
+  .card {
+    @apply bg-card flex flex-col gap-4 w-max py-8 px-12 border-2 border-theme rounded-2xl;
+  }
 }
