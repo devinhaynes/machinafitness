@@ -2,6 +2,7 @@ import { HTMLInputTypeAttribute } from "react";
 
 type FormLabelProps = {
   name: string;
+  label: string;
   type: HTMLInputTypeAttribute;
   required?: boolean;
   value?: string;
@@ -11,6 +12,7 @@ type FormLabelProps = {
 
 export const ClientFormLabel = ({
   name,
+  label,
   type,
   required = false,
   value = "",
@@ -18,7 +20,7 @@ export const ClientFormLabel = ({
   onChange = () => {},
 }: FormLabelProps) => (
   <label className={`label flex flex-col gap-1 ${disabled && "text-gray-600"}`}>
-    <span>{name}</span>
+    <span>{label}</span>
     <input
       className="input disabled:!border-none disabled:bg-gray-600"
       type={type}
@@ -26,6 +28,7 @@ export const ClientFormLabel = ({
       value={value}
       disabled={disabled}
       onChange={onChange}
+      name={name}
     />
   </label>
 );

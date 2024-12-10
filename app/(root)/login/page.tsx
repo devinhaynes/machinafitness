@@ -14,8 +14,8 @@ export default function LoginPage() {
         Login to your account
       </div>
       <form className="card">
-        <FormLabel name="Email" type="email" required />
-        <FormLabel name="Password" type="password" required />
+        <FormLabel name="email" label="Email" type="email" required />
+        <FormLabel name="password" label="Password" type="password" required />
         <div className="flex gap-2 justify-end">
           <button className="action-button" formAction={login}>
             Log in

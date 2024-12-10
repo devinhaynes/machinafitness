@@ -45,18 +45,13 @@ export default function AccountForm({ user }: { user: User | null }) {
     getProfile();
   }, [user, getProfile]);
 
-  async function updateProfile({
-    username,
-    website,
-    avatar_url,
-  }: {
-    username: string | null;
-    fullname: string | null;
-    website: string | null;
-    avatar_url: string | null;
-  }) {
+  async function updateProfile(formData: FormData) {
     try {
       setLoading(true);
+
+      const fullname = formData.get("fullname") as string;
+      const username = formData.get("username") as string;
+      const website = formData.get("website") as string;
 
       const { error } = await supabase.from("profiles").upsert({
         id: user?.id as string,
@@ -69,6 +64,7 @@ export default function AccountForm({ user }: { user: User | null }) {
       if (error) throw error;
       alert("Profile updated!");
     } catch (error) {
+      console.log(error.message);
       alert("Error updating the data!");
     } finally {
       setLoading(false);
@@ -77,39 +73,37 @@ export default function AccountForm({ user }: { user: User | null }) {
 
   return (
     <div className="h-screen w-screen grid place-content-center gap-4">
-      <div className="card">
+      <form className="card" action={updateProfile}>
         <ClientFormLabel
-          name="Email"
+          name="email"
+          label="Email"
           type="email"
           value={user?.email}
           disabled
         />
         <ClientFormLabel
-          name="Full Name"
+          name="fullname"
+          label="Full Name"
           type="text"
           value={fullname || ""}
           onChange={(e) => setFullname(e.target.value)}
         />
         <ClientFormLabel
-          name="Username"
+          name="username"
+          label="Username"
           type="text"
           value={username || ""}
           onChange={(e) => setUsername(e.target.value)}
         />
         <ClientFormLabel
-          name="Website"
+          name="website"
+          label="Website"
           type="url"
           value={website || ""}
           onChange={(e) => setWebsite(e.target.value)}
         />
         <div className="flex justify-end">
-          <button
-            className="action-button"
-            onClick={() =>
-              updateProfile({ fullname, username, website, avatar_url })
-            }
-            disabled={loading}
-          >
+          <button className="action-button" type="submit" disabled={loading}>
             {loading ? (
               <div className="flex items-center gap-2 text-background">
                 <FaSpinner className="animate-spin text-xl" />
@@ -120,7 +114,7 @@ export default function AccountForm({ user }: { user: User | null }) {
             )}
           </button>
         </div>
-      </div>
+      </form>
 
       <div className="flex justify-end">
         <form action="/auth/signout" method="post">
