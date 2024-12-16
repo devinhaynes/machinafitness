@@ -1,5 +1,5 @@
-import { FormLabel } from "@/components/FormLabel";
-import { signup } from "@/app/actions/auth";
+import { FormLabel } from "@/components/FormComponents";
+import { signup } from "@/actions/auth";
 import gsi from "@/public/assets/web_light_rd_na.svg";
 import fb from "@/public/assets/fb.svg";
 import Image from "next/image";

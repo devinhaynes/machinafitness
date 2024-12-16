@@ -4,7 +4,6 @@ type TExercise = {
   id: number;
   created_at: string;
   exercise_name: string;
-  display_name: string;
   categories: number[];
   requires_equipment: boolean;
   equipment: number[] | null;
@@ -13,7 +12,13 @@ type TExercise = {
 type TExerciseCategory = {
   id: number;
   created_at: string;
-  name: string;
+  category_name: string;
+};
+
+type TEquipment = {
+  id: number;
+  created_at: string;
+  equipment_name: string;
 };
 
 export async function getExercises() {
@@ -37,9 +42,26 @@ export async function getExerciseCategories() {
     .select("*");
 
   if (error) {
+    console.log(error);
     const { message } = error;
     return { error: message };
   }
 
   return { data: ExerciseCategory as TExerciseCategory[] };
+}
+
+export async function getEquipment() {
+  const supabase = await createClient();
+
+  const { data: Equipment, error } = await supabase
+    .from("Equipment")
+    .select("*");
+
+  if (error) {
+    console.log(error);
+    const { message } = error;
+    return { error: message };
+  }
+
+  return { data: Equipment as TEquipment[] };
 }

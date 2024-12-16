@@ -1,19 +1,14 @@
-import { Exercises } from "@/components/Exercises";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 
-export default function Dashboard() {
+export default function StatsPage() {
   return (
-    // <div className="flex h-screen w-screen">
-    //   <Sidebar />
     <div className="w-full m-4 card">
       <div className="pb-4 border-b-theme border-b-2">
         <h1 className="text-4xl px-8 bg-theme text-background rounded-2xl w-fit">
-          Dashboard
+          Stats
         </h1>
       </div>
-
       <div className="flex flex-wrap gap-4">
-        <Exercises />
         <div className="card relative">
           <div className="absolute left-0 top-0 px-4 pt-2 text-sm pb-1 rounded-br-2xl rounded-tl-xl bg-theme text-background border-b-[1px] border-b-theme">
             Latest Workout
@@ -67,6 +62,5 @@ export default function Dashboard() {
         <div className="card h-fit">tbd</div>
       </div>
     </div>
-    // </div>
   );
 }

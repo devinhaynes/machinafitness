@@ -1,9 +1,8 @@
-import { getExercises } from "@/app/api/exercises/route";
+import { getExerciseCategories } from "@/app/api/exercises/route";
 import { MdOutlineSearch } from "react-icons/md";
 
-export const Exercises = async () => {
-  const { data: exerciseData, error } = await getExercises();
-  const Exercise = exerciseData;
+export const ExerciseCategories = async () => {
+  const { data: ExerciseCategories, error } = await getExerciseCategories();
 
   if (error) {
     console.log(error);
@@ -13,7 +12,7 @@ export const Exercises = async () => {
   return (
     <div className="card relative overflow-hidden">
       <p className="absolute top-0 left-0 px-4 bg-theme text-background rounded-br-xl">
-        Exercises
+        Categories
       </p>
       <div className="input flex gap-2 justify-between items-center mt-8">
         <input
@@ -24,10 +23,10 @@ export const Exercises = async () => {
         <MdOutlineSearch className="text-2xl text-slate-700" />
       </div>
 
-      {Exercise && Exercise.length > 0 ? (
+      {ExerciseCategories && ExerciseCategories.length > 0 ? (
         <ul>
-          {Exercise.map((exercise) => (
-            <li key={exercise.id}>{exercise.exercise_name}</li>
+          {ExerciseCategories.map((category) => (
+            <li key={category.id}>{category.category_name}</li>
           ))}
         </ul>
       ) : (

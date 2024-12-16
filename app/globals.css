@@ -38,11 +38,23 @@ body {
     @apply bg-background text-foreground rounded-2xl px-4 py-1 max-w-[40ch] border-theme border-2;
   }
 
+  .select {
+    @apply appearance-none;
+  }
+
   .label {
     @apply text-sm;
   }
 
   .card {
     @apply bg-card flex flex-col gap-4 w-max py-8 px-12 border-2 border-theme rounded-2xl;
+  }
+
+  .option {
+    @apply py-1 my-1 px-2 rounded-lg flex justify-between checked:bg-theme;
+  }
+
+  li[data-sidebar-link-active="true"] {
+    @apply bg-theme text-background hover:bg-theme;
   }
 }
